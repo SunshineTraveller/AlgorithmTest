@@ -9,10 +9,12 @@
 #include <stdio.h>
 #include <float.h>
 #include "BaseCTest.h"
+#include "AlgorithmPratise.h"
 
 int main(int argc, const char * argv[]) {
     
-    BaseTestFunction();
-    return 1;
+//    BaseTestFunction();
+    AlgorithmEntrance();
+    return 0;
 }
 

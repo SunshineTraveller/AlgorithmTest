@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7224CA8024075A1F00691A72 /* AlgorithmPratise.c in Sources */ = {isa = PBXBuildFile; fileRef = 7224CA7F24075A1F00691A72 /* AlgorithmPratise.c */; };
 		72E63D7C23FE53300003254B /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 72E63D7B23FE53300003254B /* main.c */; };
 		72E63D8723FE5B630003254B /* BaseCTest.c in Sources */ = {isa = PBXBuildFile; fileRef = 72E63D8623FE5B630003254B /* BaseCTest.c */; };
 /* End PBXBuildFile section */
@@ -24,6 +25,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7224CA7E24075A1F00691A72 /* AlgorithmPratise.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlgorithmPratise.h; sourceTree = "<group>"; };
+		7224CA7F24075A1F00691A72 /* AlgorithmPratise.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = AlgorithmPratise.c; sourceTree = "<group>"; };
 		72E63D7823FE53300003254B /* Algorithm */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Algorithm; sourceTree = BUILT_PRODUCTS_DIR; };
 		72E63D7B23FE53300003254B /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		72E63D8523FE5B630003254B /* BaseCTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseCTest.h; sourceTree = "<group>"; };
@@ -63,6 +66,8 @@
 				72E63D7B23FE53300003254B /* main.c */,
 				72E63D8523FE5B630003254B /* BaseCTest.h */,
 				72E63D8623FE5B630003254B /* BaseCTest.c */,
+				7224CA7E24075A1F00691A72 /* AlgorithmPratise.h */,
+				7224CA7F24075A1F00691A72 /* AlgorithmPratise.c */,
 			);
 			path = Algorithm;
 			sourceTree = "<group>";
@@ -124,6 +129,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7224CA8024075A1F00691A72 /* AlgorithmPratise.c in Sources */,
 				72E63D8723FE5B630003254B /* BaseCTest.c in Sources */,
 				72E63D7C23FE53300003254B /* main.c in Sources */,
 			);
