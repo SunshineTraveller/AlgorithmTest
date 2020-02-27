@@ -17,7 +17,6 @@
  有1、2、3、4 4个数字，能组成多少个互不相同且无重复数字的三位数，都是多少？
  */
 void(practise1)(void) {
-    printf("practise1");
     int count = 0;
     for(int i = 1;i <= 4;i++) {
         for(int j = 1;j <= 4; j++) {
@@ -30,6 +29,7 @@ void(practise1)(void) {
         }
     }
     printf("\n1234 4个数字能组成 %d 个无重复不相同的数字",count);
+    printf("\n======================  practise1  ======================\n\n");
 }
 
 
@@ -80,6 +80,7 @@ void(Practise2)(void) {
         
     }
     printf("应发放的奖金总数为 %lf",bonus);
+    printf("\n======================  practise2  ======================\n\n");
 }
 
 #pragma mark ****************  Practise3   ****************
@@ -115,7 +116,7 @@ void(Practise3)(void) {
             }
         }
     }
-    
+    printf("\n======================  practise3  ======================\n\n");
 }
 
 #pragma mark ****************   Practise4  ****************
@@ -145,6 +146,7 @@ void Practise4 (void) {
         }
         printf("\n");
     }
+    printf("最终排序结果 \n");
     for (int i = 0; i<count; i++) {
         printf("%d ",array[i]);
     }
@@ -172,11 +174,11 @@ void Practise4 (void) {
         printf("\n");
         
     }
-    
+    printf("最终排序结果 \n");
     for (int i = 0; i<count; i++) {
         printf("%d ",arrayb[i]);
     }
-    
+    printf("\n======================  practise4  ======================\n\n");
 }
 
 #pragma mark ****************  practise5   ****************
@@ -203,6 +205,7 @@ void practise5 (void) {
             }
         }
     }
+    printf("\n======================  practise5  ======================\n\n");
 }
 
 /*
@@ -236,6 +239,7 @@ void practise6 (void) {
             printf("\n");
         }
     }
+    printf("\n======================  practise6  ======================\n\n");
 }
 
 /*
@@ -273,19 +277,34 @@ void practise7 (void) {
             printf("%d   ",i);
         }
     }
-    
+    printf("\n======================  practise7  ======================\n\n");
 }
 
 /*
  打印出所有的"水仙花数"，所谓"水仙花数"是指一个三位数，其各位数字立方和等于该数 本身。例如：153是一个"水仙花数"，因为153=1的三次方＋5的三次方＋3的三次方
+ 循环遍历 100 - 1000 内的数，判断是否满足条件  a³ = x³ + y³ + z³ 即可
  */
 void practise8 (void) {
     
+    for (int i = 100; i < 1000; i++) {
+        
+        int a = i % 100 % 10;   // 个位
+        int b = i % 100 / 10;   // 十位
+        int c = i / 100;        // 百位
+        
+        if (i == (a*a*a + b*b*b + c*c*c)) {
+            printf("%d = %d³ + %d³ + %d³\n",i,c,b,a);
+        }
+
+    }
+    
+    printf("\n======================  practise8  ======================\n\n");
 }
 
 #pragma mark ****************  算法入门   ****************
 void(AlgorithmEntrance)(void) {
     printf("\n************************************\n\n");
+    practise8();
 //    practise7();
 //    practise6();
 //    practise5();
