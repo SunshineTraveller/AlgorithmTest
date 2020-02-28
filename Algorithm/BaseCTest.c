@@ -202,7 +202,14 @@ int(addFunction)(int a,int b) {
     return a + b;
 }
 
-
+/* 一个函数，为了测试函数指针用的 */
+int * funcPtrTest(void) {
+    int a[2] = {2,3};
+    int *ptr = a;
+    printf("%d  %d",*ptr,*a);
+//    return a;  注意，这里不能返回 a, 因为编译时系统会认定 a 是指向栈区的，但是ptr系统并不能知道ptr指向的是堆区还是栈区。如果 return a;
+    return ptr;
+}
 
 /*
  函数指针
@@ -343,6 +350,7 @@ void(BaseTestFunction)(void) {
 //    pointerTest();
 //    arrayPointerTest();
 //    functionPointerTest();
+    funcPtrTest();
     printf("\n\n************************************\n");
 }
 

@@ -13,7 +13,9 @@
 
 int main(int argc, const char * argv[]) {
     
+    // C语言基础
 //    BaseTestFunction();
+    // 简单算法
     AlgorithmEntrance();
     return 0;
 }

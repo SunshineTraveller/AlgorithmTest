@@ -11,6 +11,7 @@
 #include <strings.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 #pragma mark ****************  practise1   ****************
 /*
@@ -295,16 +296,264 @@ void practise8 (void) {
         if (i == (a*a*a + b*b*b + c*c*c)) {
             printf("%d = %d³ + %d³ + %d³\n",i,c,b,a);
         }
-
     }
     
     printf("\n======================  practise8  ======================\n\n");
 }
 
+/*
+ 题目：将一个正整数分解质因数。例如：输入90,打印出90=2*3*3*5。
+ 分析：将该数除以 1-该数，能整除则继续
+ 下面给出两种算法，很明显第一种要优于第二种，第二种有两层循环嵌套，复杂度要比第一个高
+ */
+void practise9 (int number) {
+
+    // 将该整数a从2开始，一直到a本身，遍历整除，若能整除，将a赋值成整除后的数，并将i置1重新开始新一轮的循环
+    int a = number;
+    printf("%d = ",number);
+    for (int i = 2; i <= a; i++) {
+
+        if (a % i == 0) {
+            // 最后一位不加 *
+            if (a == i) {
+                printf("%d",i);
+            }else {
+                printf("%d * ",i);
+            }
+            a = a / i;
+            i = 1;
+        }
+    }
+
+
+    // 将该数从2开始整除，若能整除，将该数置为整除后的数，继续执行while循环，直至对i不能整除；然后i+1,进行下轮循环
+    int n=number,i;
+    printf("\n%d = ",n);
+    for (i = 2; i <= n; i++) {
+
+        while (n % i == 0) {
+            printf("%d",i);
+            n /= i;
+            if (n!=1) {
+                printf(" * ");
+            }
+        }
+    }
+    printf("\n======================  practise9  ======================\n\n");
+}
+
+/*
+ 题目：利用条件运算符的嵌套来完成此题：学习成绩>=90分的同学用A表示，60-89分之间的用B表示，60分以下的用C表示。
+ */
+void practise10 (int score) {
+    char st = (score >= 90) ? 'A' : ((score >= 60) ? 'B' : 'C');
+    printf(" score = %d , level = %c",score,st);
+    printf("\n======================  practise10  ======================\n\n");
+}
+
+/*
+ 题目：输入两个正整数m和n，求其最大公约数和最小公倍数
+ 最大公约数 ： 两个数都能除尽的最大的数
+ 最小公倍数 ： 两个数都能被除尽的最小的数
+ 算法如下两种
+ */
+void practise11 (int m,int n) {
+    
+    // i 从 m n 中较小的数开始，分别用 m 和 n 去除这个数，第一次得到的这个数就是最大公约数
+    for (int i = (m > n ? n : m); i >= 1; i--) {
+        if (m % i == 0 && n % i == 0) {
+            printf("%d %d 的最大公约数为 %d",m,n,i);
+            break;
+        }
+    }
+
+    // i 从 m n 中较大的数开始，分别用 i 去除 m 和 n，第一次m、n都被i整除的数就是最小公倍数
+    for (int i = (m > n ? m : n); 1; i++) {
+        if (i % m == 0 && i % n == 0) {
+            printf(",%d %d 的最小公倍数为 %d",m,n,i);
+            break;
+        }
+    }
+    
+    // 辗转相除法
+    int a=m,b=n,t,r,q;
+    if (a < b) {
+        t = b;
+        b = a;
+        a = t;
+    }
+    r = a % b;
+    q = a * b;
+    while (r != 0) {
+        a = b;
+        b = r;
+        r = a % b;
+    }
+    printf("这两个数的最大公约数是%d，最小公倍数是%d\n",b,q/b);
+    printf("\n======================  practise11  ======================\n\n");
+}
+
+/*
+ 题目：输入一行字符，分别统计出其中英文字母、空格、数字和其它字符的个数。
+  一、通过 ASCII 码表查询范围
+/ 二、通过字符大小比较
+ */
+void practise12 (void) {
+    
+    /*
+     ASCII 码表的值如下
+     数字 0~9       ASCII 48~57
+     字母 a-zA-Z    ASCII 65~90, 97~122
+     空格 ‘ ’       ASCII 32
+     其他
+     注意：判断条件为字符串的长度为实际长度
+     */
+    int numberCount     = 0;
+    int alphmCount      = 0;
+    int spaceCount      = 0;
+    int specialCount    = 0;
+    char a[100] = "12j 3  ok :, .";
+    for (int i = 0; i<14; i++) {
+        char tmpChar = a[i];
+        // 方法一
+//        // 数字
+//        if (tmpChar >= 48 && tmpChar <= 57) {
+//            numberCount++;
+//        // 字母
+//        }else if ((tmpChar >= 65 && tmpChar <= 90) || (tmpChar >= 97 && tmpChar <= 122)) {
+//            alphmCount++;
+//        // 空格
+//        }else if(tmpChar == 32){
+//            spaceCount++;
+//        // 特殊字符等
+//        }else {
+//            specialCount++;
+//        }
+        
+        // 方法二
+        if ((tmpChar >= 'a' && tmpChar <= 'z') || (tmpChar >= 'A' && tmpChar <= 'Z')) {
+            numberCount++;
+        }else if (tmpChar >= '0' && tmpChar <= '9') {
+            alphmCount++;
+        }else if (tmpChar == ' ') {
+            spaceCount++;
+        }else {
+            specialCount++;
+        }
+        
+    }
+    printf("数字有 %d 个， 字母 %d 个，  空格 %d 个， 特殊字符 %d 个",numberCount,alphmCount,spaceCount,specialCount);
+    
+    // 延伸: 字符是可以直接比较大小的，比较的依据是字符在ASCII表中的十进制大小 ，也就是方法1里的值，比如字符 'a' 在ASCII表中的十进制值就是 65.
+    // *ptr+1 表达式 ，自右向左开始，先计算 ptr+1 ，即指针的值ptr+1（假设为x），然后取出x里对应的值 ，要注意运算符号的优先级，不然容易搞不清楚一个表达式的意思
+    // int * sfd()    ----  一个函数，函数名 sfd  ,返回值类型为 int* 指针，参数为空void
+    // int (*sfd)()   ----  一个函数指针，指针名为 sfd, 指针所指向的函数的返回值为int,参数为空void
+    // 如下：
+//    char aChar = 'A';
+//    char *ptr = &aChar;
+//    char c = *&aChar+3;
+//    printf("\n %c  %c  %c  %c",*ptr,*ptr+1, *&aChar+2,c);
+    printf("\n======================  practise12  ======================\n\n");
+}
+
+
+/*
+ 题目：求 s = func(x) = x + xx + xxx + xxxx +...+ x...x 的值，其中x是一个数字。
+ 分析如下：
+ 举例观察
+ a=2,s=1;
+ a=2,s=2+22;
+ a=3,s=3+33+333;
+ a=4,s=4+44+444+4444;
+ a=5,s=5+55+555+5555+55555;
+ ...
+ a=n,s= n + nn + nnn +...+ (n...n);
+        1   2     3          n个n
+ 
+ 总结每一项的算法公式：
+ i == 0,  x * 10^0
+ i == 1,  x * 10^i + x
+ i == 2,  x * 10^i + x * 10^(i-1) + x
+ i == 3,  x * 10^i + x * 10^(i-2) + x * 10^(i-1) + x
+ ...   ,    ......
+ i == n,  x * 10^n + x*10^(n-1)+ ... + x * 10^(n-(n-1)) + x
+ 
+ 1.先根据规律找出出每一项的公式    ---> 内存循环，用来计算每一项的值
+ 2.然后从第一项开始一直加到最后一项 ---> 外层循环，用来控制相加次数，并将每次新增项累加
+ 
+ */
+void practise13(double x) {printf("\n======================  practise8  ======================\n\n");
+    
+    int result = 0;  // 累加用
+    printf("f(%d) = ",(int)x);
+    for (double i = 0; i < x; i++) {
+        
+        // 记录 每次循环比上次循环多加出来的那个数,累加后就是当前项的总值
+        int tmp0 = 0;
+        
+        // 计算 每次循环比上次循环多加出来的那个数
+        for (double j = i; j >= 0; j--) {
+            tmp0 += x * pow(10.0, j);
+        }
+        
+        // 打印每次多出来的那个数
+        if (i == x - 1) {
+            printf("%d ",tmp0);
+        }else {
+            printf("%d + ",tmp0);
+        }
+        
+        result += tmp0;
+    }
+    
+    printf(" = %d",result);
+    printf("\n======================  practise13  ======================\n\n");
+}
+
+
+/*
+ 题目：一个数如果恰好等于它的因子之和，这个数就称为"完数"。例如6=1＋2＋3.编程找出1000以内的所有完数。
+ */
+void practise14() {
+    
+    // 1. 求解每个数的因子
+    // 2. 判断这个数是否 = 因子和
+    // 3. 保存这个数
+    
+    int a[100]; // 保存完数的数组
+    
+    // 从1000开始找
+    for (int i = 1; i <= 1000; i++) {
+        
+        int tmpValue = i;
+        int tmpCount = 0; // 因子之和
+        
+        for (int j = 1; j< tmpValue; j++) {
+            // 找该数的因子 并累加
+            if (tmpValue % j == 0) {
+                tmpCount += j;
+            }
+        }
+        
+        if (tmpCount == tmpValue) {
+            printf("%d\n",tmpValue);
+        }
+        
+    }
+    
+    printf("\n======================  practise14  ======================\n\n");
+}
+
 #pragma mark ****************  算法入门   ****************
 void(AlgorithmEntrance)(void) {
     printf("\n************************************\n\n");
-    practise8();
+    practise14();
+//    practise13(6);
+//    practise12();
+//    practise11(12, 26);
+//    practise10(89);
+//    practise9(100);
+//    practise8();
 //    practise7();
 //    practise6();
 //    practise5();
