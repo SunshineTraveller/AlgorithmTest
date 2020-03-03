@@ -679,13 +679,61 @@ void practise17(int x) {
         }
         printf("\n");
     }
+    printf("\n======================  practise17  ======================\n\n");
+}
+
+/*
+ 题目：有一分数序列：2/1，3/2，5/3，8/5，13/8，21/13...求出这个数列的前20项之和。
+ 1.分母是上个数的分子
+ 2.分子是上个数的分子和分母的和
+ */
+void practise18 (void) {
     
+    float molecule = 2;                   // 分子
+    float denominator = 1;                // 分母
+    float lastMo = molecule;              // 上个分子
+    float lastDeno = denominator;         // 上个分母
+    float sum = molecule/denominator;     // 总数
+    
+    for (int i = 1; i<20; i++) {
+        
+        denominator = lastMo;               // 新的分母
+        molecule    = lastMo + lastDeno;    // 新的分子
+        sum        += molecule/denominator; // 统计
+        
+        lastMo      = molecule;             // 更新上个分子
+        lastDeno    = denominator;          // 更新上个分母
+    }
+    printf("数列前20项和为：%f",sum);
+    printf("\n======================  practise18  ======================\n\n");
+    
+};
+
+/*
+ 题目：求1+2!+3!+...+20!的和。
+ n! = 1*2*3*...*n;
+ 求出每项的和，在累加
+ */
+void practise19 (int x) {
+    
+    
+    
+    
+    int i;
+    long asum=0,mix=1;
+    for (int i = 1; i<=x; i++) {
+        mix=mix*i;
+        asum=asum+mix;
+    }
+    printf("%d的前%d项阶乘的和为：%ld",x,x,asum);
 }
 
 #pragma mark ****************  算法入门   ****************
 void(AlgorithmEntrance)(void) {
     printf("\n************************************\n\n");
-    practise17(65);
+    practise19(20);
+//    practise18();
+//    practise17(65);
 //    practise16();
 //    practise15();
 //    practise14();
