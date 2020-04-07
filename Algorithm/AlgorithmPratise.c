@@ -403,7 +403,7 @@ void practise12 (void) {
     /*
      ASCII 码表的值如下
      数字 0~9       ASCII 48~57
-     字母 a-zA-Z    ASCII 65~90, 97~122
+     字母 a-z A-Z   ASCII 97~122,65~90
      空格 ‘ ’       ASCII 32
      其他
      注意：判断条件为字符串的长度为实际长度
@@ -431,7 +431,7 @@ void practise12 (void) {
 //        }
         
         // 方法二
-        if ((tmpChar >= 'a' && tmpChar <= 'z') || (tmpChar >= 'A' && tmpChar <= 'Z')) {
+        if ((tmpChar >= 'A' && tmpChar <= 'Z') || (tmpChar >= 'a' && tmpChar <= 'z')) {
             numberCount++;
         }else if (tmpChar >= '0' && tmpChar <= '9') {
             alphmCount++;
@@ -444,7 +444,7 @@ void practise12 (void) {
     }
     printf("数字有 %d 个， 字母 %d 个，  空格 %d 个， 特殊字符 %d 个",numberCount,alphmCount,spaceCount,specialCount);
     
-    // 延伸: 字符是可以直接比较大小的，比较的依据是字符在ASCII表中的十进制大小 ，也就是方法1里的值，比如字符 'a' 在ASCII表中的十进制值就是 65.
+    // 延伸: 字符是可以直接比较大小的，比较的依据是字符在ASCII表中的十进制大小 ，也就是方法1里的值，比如字符 'A' 在ASCII表中的十进制值就是 65.
     // *ptr+1 表达式 ，自右向左开始，先计算 ptr+1 ，即指针的值ptr+1（假设为x），然后取出x里对应的值 ，要注意运算符号的优先级，不然容易搞不清楚一个表达式的意思
     // int * sfd()    ----  一个函数，函数名 sfd  ,返回值类型为 int* 指针，参数为空void
     // int (*sfd)()   ----  一个函数指针，指针名为 sfd, 指针所指向的函数的返回值为int,参数为空void
@@ -461,7 +461,7 @@ void practise12 (void) {
  题目：求 s = func(x) = x + xx + xxx + xxxx +...+ x...x 的值，其中x是一个数字。
  分析如下：
  举例观察
- a=2,s=1;
+ a=1,s=1;
  a=2,s=2+22;
  a=3,s=3+33+333;
  a=4,s=4+44+444+4444;
@@ -716,22 +716,86 @@ void practise18 (void) {
  */
 void practise19 (int x) {
     
-    
-    
-    
-    int i;
     long asum=0,mix=1;
     for (int i = 1; i<=x; i++) {
         mix=mix*i;
         asum=asum+mix;
     }
     printf("%d的前%d项阶乘的和为：%ld",x,x,asum);
+    printf("\n======================  practise19  ======================\n\n");
+}
+
+int recursive(int x) {
+    if (x<=1) {
+        return 1;
+    }else {
+        return x * recursive(x-1);
+    }
+}
+int recursiveAdd(int x) {
+    if (x > 0) {
+        return x + recursiveAdd(x-1);
+    }else {
+        return 0;
+    }
+}
+/*
+ 题目：利用递归方法求5!
+ 5 x 4 x 3 x 2 x 1
+ */
+void practise20(int x) {
+    printf("%d  %d",recursive(x),recursiveAdd(x));
+    printf("\n======================  practise20  ======================\n\n");
+}
+
+void printRecursiveChars(char *arr,long length) {
+    if (length <= 0) {
+        printf("%c",arr[0]);
+    }else {
+        printf("%c",arr[length]);
+        printRecursiveChars(arr, length-1);
+    }
+}
+
+/*
+题目：利用递归函数调用方式，将所输入的5个字符，以相反顺序打印出来。
+*/
+void practise21(char *charArr) {
+    printf("原始字符串  : %s",charArr);
+    printf("\n逆序后的 : ");
+    printRecursiveChars(charArr, strlen(charArr)-1);
+}
+
+
+/* 小写转大写 */
+char capitaledChar(char aChar) {
+    if (aChar <= 'z' && aChar >= 'a') {
+        char tmpChar = aChar;
+//        printf("%c 转大写 %c",tmpChar,tmpChar-32);
+        return tmpChar - 32;
+    }else {
+        return aChar;
+    }
+}
+
+/*
+ 题目：给出一个字符串，将小写字母全部转换成大写字母
+ */
+void practise22(char *charsArr) {
+    for (int i = 0; i < strlen(charsArr)-1; i++) {
+        printf("%c",capitaledChar(charsArr[i]));
+    }
 }
 
 #pragma mark ****************  算法入门   ****************
-void(AlgorithmEntrance)(void) {
+void AlgorithmEntrance (void) {
     printf("\n************************************\n\n");
-    practise19(20);
+
+    practise22("23nerf2ijnDWdow0");
+    
+//    practise21("123456789");
+//    practise20(5);
+//    practise19(20);
 //    practise18();
 //    practise17(65);
 //    practise16();
